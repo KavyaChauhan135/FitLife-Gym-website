@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Planner - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .meal-planner-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1498837167922-ddd27525d352")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .meal-planner-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .meal-planner-grid {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .meal-sidebar {
+        background: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        position: sticky;
+        top: 100px;
+      }
+
+      .meal-calendar {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .meal-day {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1.5rem;
+      }
+
+      .meal-day:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .meal-day-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .meal-slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .meal-slot {
+        background: var(--light-bg);
+        padding: 1rem;
+        border-radius: 8px;
+        min-height: 150px;
+      }
+
+      .meal-slot h4 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .add-meal-btn {
+        background: none;
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        min-height: 100px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        transition: all 0.3s ease;
+      }
+
+      .add-meal-btn:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .add-meal-btn i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .meal-item {
+        background: white;
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .meal-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .meal-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .meal-actions button {
+        background: none;
+        border: none;
+        font-size: 0.8rem;
+        color: #777;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .meal-actions button:hover {
+        background: #f0f0f0;
+        color: var(--primary-color);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../info/membership-plans.html">Membership</a>
+        <a href="../info/schedule.html">Schedule</a>
+        <a href="../info/nutrition.html">Nutrition</a>
+        <a href="../info/blog.html">Blog</a>
+        <a href="../auth/login.html" class="login-link">Login</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="meal-planner-hero">
+      <div class="hero-content">
+        <h1>Personalized Meal Planner</h1>
+        <p>Plan your meals for optimal nutrition and fitness results</p>
+      </div>
+    </section>
+
+    <!-- Meal Planner Section -->
+    <section class="meal-planner-container">
+      <div class="section-intro" data-aos="fade-up">
+        <h2>Weekly Meal Planner</h2>
+        <p>
+          Plan your meals for the week ahead to stay on track with your
+          nutrition goals. Customize your plan based on your calorie needs and
+          dietary preferences.
+        </p>
+      </div>
+
+      <div class="meal-planner-grid">
+        <!-- Sidebar -->
+        <div class="meal-sidebar" data-aos="fade-right">
+          <h3>Meal Options</h3>
+          <p>Drag and drop meals to your planner or create custom meals.</p>
+
+          <div class="meal-categories">
+            <h4>Breakfast Ideas</h4>
+            <div class="meal-list" id="breakfast-options">
+              <!-- Will be populated by JavaScript -->
+            </div>
+
+            <h4>Lunch Ideas</h4>
+            <div class="meal-list" id="lunch-options">
+              <!-- Will be populated by JavaScript -->
+            </div>
+
+            <h4>Dinner Ideas</h4>
+            <div class="meal-list" id="dinner-options">
+              <!-- Will be populated by JavaScript -->
+            </div>
+
+            <h4>Snack Ideas</h4>
+            <div class="meal-list" id="snack-options">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <button class="btn-primary" id="create-meal-btn">
+            <i class="fas fa-plus"></i> Create Custom Meal
+          </button>
+        </div>
+
+        <!-- Calendar -->
+        <div class="meal-calendar" data-aos="fade-up">
+          <div class="calendar-controls">
+            <button id="prev-week" class="btn-secondary">
+              <i class="fas fa-chevron-left"></i> Previous Week
+            </button>
+            <h3 id="week-range">June 5 - June 11, 2023</h3>
+            <button id="next-week" class="btn-secondary">
+              Next Week <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <div id="meal-days">
+            <!-- Will be populated by JavaScript -->
+          </div>
+
+          <div class="meal-summary">
+            <h3>Weekly Nutrition Summary</h3>
+            <div class="nutrition-stats">
+              <div class="stat-item">
+                <span>Average Daily Calories</span>
+                <strong id="avg-calories">0</strong>
+              </div>
+              <div class="stat-item">
+                <span>Average Protein</span>
+                <strong id="avg-protein">0g</strong>
+              </div>
+              <div class="stat-item">
+                <span>Average Carbs</span>
+                <strong id="avg-carbs">0g</strong>
+              </div>
+              <div class="stat-item">
+                <span>Average Fat</span>
+                <strong id="avg-fat">0g</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>FitLife</h2>
+          <p>Your Path to Fitness Excellence</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="../../index.html">Home</a>
+          <a href="../info/membership-plans.html">Membership</a>
+          <a href="../info/schedule.html">Class Schedule</a>
+          <a href="../info/nutrition.html">Nutrition</a>
+          <a href="../../index.html#contact">Contact Us</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Fitness Ave, Gym City</p>
+          <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+          <p><i class="fas fa-envelope"></i> info@fitlifegym.com</p>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 FitLife Gym. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/meal-planner.js"></script>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Training - FitLife Gym</title>
+
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg" />
+
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .service-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .service-content {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .service-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .service-feature {
+        background: var(--light-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .service-feature i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .service-cta {
+        text-align: center;
+        margin: 3rem 0;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: var(--transition);
+      }
+
+      .back-button:hover {
+        color: var(--primary-color);
+      }
+
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+
+      .back-button:hover i {
+        transform: translateX(-5px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../../index.html#pricing">Pricing</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#trainers">Trainers</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Service Hero -->
+    <section class="service-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Personal Training</h1>
+        <p>One-on-one training sessions tailored to your goals</p>
+      </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+      <a href="../../index.html#services" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Services
+      </a>
+
+      <div data-aos="fade-up">
+        <h2>Transform Your Body with Expert Guidance</h2>
+        <p>
+          Our personal training program offers customized workout plans designed
+          specifically for your body type, fitness level, and goals. Whether
+          you're looking to lose weight, build muscle, improve endurance, or
+          enhance overall fitness, our certified trainers will guide you every
+          step of the way.
+        </p>
+      </div>
+
+      <div class="service-features">
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-clipboard-list"></i>
+          <h3>Customized Workout Plans</h3>
+          <p>
+            Receive a personalized training program that adapts to your progress
+            and changing goals.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-user-friends"></i>
+          <h3>Expert Trainers</h3>
+          <p>
+            Work with certified professionals who have years of experience in
+            various fitness disciplines.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-chart-line"></i>
+          <h3>Progress Tracking</h3>
+          <p>
+            Regular assessments and measurements to track your progress and
+            adjust your program accordingly.
+          </p>
+        </div>
+      </div>
+
+      <div data-aos="fade-up">
+        <h2>What to Expect</h2>
+        <p>
+          Your personal training journey begins with a comprehensive fitness
+          assessment, where we'll evaluate your current fitness level, discuss
+          your goals, and identify any limitations or concerns. Based on this
+          assessment, your trainer will design a program that's both challenging
+          and achievable.
+        </p>
+        <p>
+          During your sessions, your trainer will provide hands-on guidance,
+          ensuring proper form and technique to maximize results while
+          preventing injury. They'll also offer motivation, accountability, and
+          education about nutrition and lifestyle factors that impact your
+          fitness journey.
+        </p>
+      </div>
+
+      <div class="service-cta" data-aos="fade-up">
+        <h2>Ready to Start Your Transformation?</h2>
+        <p>Book a consultation with one of our expert trainers today!</p>
+        <a href="../../index.html#contact" class="cta-button"
+          >Schedule Consultation</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FitLife</h3>
+          <p>Transform your body, transform your life.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#trainers">Trainers</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FitLife. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+  </body>
+</html>

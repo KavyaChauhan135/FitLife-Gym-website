@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardio Zone - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .service-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1571019613576-2b22c76fd955")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .service-content {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .service-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .service-feature {
+        background: var(--light-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .service-feature i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .service-cta {
+        text-align: center;
+        margin: 3rem 0;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: var(--transition);
+      }
+
+      .back-button:hover {
+        color: var(--primary-color);
+      }
+
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+
+      .back-button:hover i {
+        transform: translateX(-5px);
+      }
+
+      .equipment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .equipment-card {
+        background: var(--white);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .equipment-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .equipment-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .equipment-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .equipment-card:hover .equipment-image img {
+        transform: scale(1.1);
+      }
+
+      .equipment-info {
+        padding: 1.5rem;
+      }
+
+      .equipment-info h3 {
+        margin-bottom: 0.5rem;
+        color: var(--secondary-color);
+      }
+
+      .equipment-info p {
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+
+      .benefits-list {
+        list-style: none;
+        margin: 2rem 0;
+      }
+
+      .benefits-list li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+      }
+
+      .benefits-list li::before {
+        content: "✓";
+        color: var(--primary-color);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../../index.html#pricing">Pricing</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#trainers">Trainers</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Service Hero -->
+    <section class="service-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Cardio Zone</h1>
+        <p>State-of-the-art cardio equipment for optimal results</p>
+      </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+      <a href="../../index.html#services" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Services
+      </a>
+
+      <div data-aos="fade-up">
+        <h2>Elevate Your Cardio Experience</h2>
+        <p>
+          Our Cardio Zone features the latest in cardiovascular fitness
+          equipment, designed to help you burn calories, improve endurance, and
+          strengthen your heart. Whether you prefer running, cycling, rowing, or
+          elliptical training, our diverse range of machines offers something
+          for everyone.
+        </p>
+      </div>
+
+      <div class="service-features">
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-tachometer-alt"></i>
+          <h3>Modern Equipment</h3>
+          <p>
+            State-of-the-art machines with advanced tracking and entertainment
+            features.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-tv"></i>
+          <h3>Entertainment Options</h3>
+          <p>
+            Built-in TVs and connectivity to keep you entertained during your
+            workout.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-chart-bar"></i>
+          <h3>Performance Tracking</h3>
+          <p>
+            Monitor your progress with detailed metrics and performance data.
+          </p>
+        </div>
+      </div>
+
+      <div data-aos="fade-up">
+        <h2>Our Equipment</h2>
+        <p>
+          We've carefully selected our cardio equipment to provide a
+          comprehensive cardiovascular workout experience. Each machine is
+          regularly maintained to ensure optimal performance and safety.
+        </p>
+
+        <div class="equipment-grid">
+          <div class="equipment-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="equipment-image">
+              <img
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
+                alt="Treadmills"
+              />
+            </div>
+            <div class="equipment-info">
+              <h3>Treadmills</h3>
+              <p>
+                High-performance treadmills with incline options and cushioned
+                decks for joint-friendly running.
+              </p>
+            </div>
+          </div>
+
+          <div class="equipment-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="equipment-image">
+              <img
+                src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b"
+                alt="Exercise Bikes"
+              />
+            </div>
+            <div class="equipment-info">
+              <h3>Exercise Bikes</h3>
+              <p>
+                Both upright and recumbent bikes for low-impact cardio workouts
+                targeting different muscle groups.
+              </p>
+            </div>
+          </div>
+
+          <div class="equipment-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="equipment-image">
+              <img
+                src="https://images.unsplash.com/photo-1571019613576-2b22c76fd955"
+                alt="Ellipticals"
+              />
+            </div>
+            <div class="equipment-info">
+              <h3>Ellipticals</h3>
+              <p>
+                Full-body workout machines that provide a smooth, low-impact
+                cardiovascular experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="equipment-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="equipment-image">
+              <img
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
+                alt="Rowing Machines"
+              />
+            </div>
+            <div class="equipment-info">
+              <h3>Rowing Machines</h3>
+              <p>
+                Efficient full-body cardio machines that engage multiple muscle
+                groups simultaneously.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-aos="fade-up">
+        <h2>Benefits of Cardio Exercise</h2>
+        <p>
+          Regular cardiovascular exercise offers numerous health benefits that
+          extend far beyond just burning calories. Here's what you can expect
+          from consistent cardio workouts:
+        </p>
+
+        <ul class="benefits-list">
+          <li>
+            Improved heart health and reduced risk of cardiovascular disease
+          </li>
+          <li>Increased lung capacity and respiratory efficiency</li>
+          <li>Enhanced endurance and stamina for daily activities</li>
+          <li>Accelerated metabolism and more efficient calorie burning</li>
+          <li>Reduced stress levels and improved mental well-being</li>
+          <li>Better sleep quality and regulation of sleep patterns</li>
+          <li>Strengthened immune system and reduced risk of illness</li>
+          <li>
+            Improved blood circulation and oxygen delivery throughout the body
+          </li>
+        </ul>
+      </div>
+
+      <div class="service-cta" data-aos="fade-up">
+        <h2>Ready to Elevate Your Cardio?</h2>
+        <p>
+          Join FitLife today and experience our state-of-the-art Cardio Zone!
+        </p>
+        <a href="../../index.html#contact" class="cta-button">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FitLife</h3>
+          <p>Transform your body, transform your life.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#trainers">Trainers</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FitLife. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+  </body>
+</html>

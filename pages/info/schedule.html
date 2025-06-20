@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Schedule - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .schedule-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .schedule-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .schedule-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        justify-content: center;
+      }
+
+      .filter-button {
+        padding: 0.5rem 1.5rem;
+        background: var(--light-bg);
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .filter-button.active {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .schedule-table th {
+        background: var(--secondary-color);
+        color: white;
+        padding: 1rem;
+        text-align: left;
+      }
+
+      .schedule-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .schedule-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .class-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .class-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--light-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+      }
+
+      .class-details h4 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .class-details p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #777;
+      }
+
+      .book-btn {
+        padding: 0.5rem 1rem;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .book-btn:hover {
+        background: #e63c3c;
+      }
+
+      .book-btn.booked {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 768px) {
+        .schedule-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../../index.html#pricing">Pricing</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#trainers">Trainers</a>
+        <a href="../../index.html#contact">Contact</a>
+        <a href="../auth/login.html" class="login-link">Login</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Schedule Hero -->
+    <section class="schedule-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Class Schedule</h1>
+        <p>Find the perfect class to fit your schedule and fitness goals</p>
+      </div>
+    </section>
+
+    <!-- Schedule Content -->
+    <div class="schedule-container">
+      <div class="schedule-filters" data-aos="fade-up">
+        <button class="filter-button active" data-day="all">All Days</button>
+        <button class="filter-button" data-day="monday">Monday</button>
+        <button class="filter-button" data-day="tuesday">Tuesday</button>
+        <button class="filter-button" data-day="wednesday">Wednesday</button>
+        <button class="filter-button" data-day="thursday">Thursday</button>
+        <button class="filter-button" data-day="friday">Friday</button>
+        <button class="filter-button" data-day="saturday">Saturday</button>
+        <button class="filter-button" data-day="sunday">Sunday</button>
+      </div>
+
+      <div class="schedule-filters" data-aos="fade-up">
+        <button class="filter-button active" data-type="all">
+          All Classes
+        </button>
+        <button class="filter-button" data-type="cardio">Cardio</button>
+        <button class="filter-button" data-type="strength">Strength</button>
+        <button class="filter-button" data-type="yoga">Yoga</button>
+        <button class="filter-button" data-type="hiit">HIIT</button>
+        <button class="filter-button" data-type="dance">Dance</button>
+      </div>
+
+      <table class="schedule-table" data-aos="fade-up">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Class</th>
+            <th>Instructor</th>
+            <th>Duration</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <!-- Monday Classes -->
+          <tr class="schedule-row" data-day="monday" data-type="cardio">
+            <td>06:00 AM</td>
+            <td>
+              <div class="class-item">
+                <div class="class-icon">
+                  <i class="fas fa-running"></i>
+                </div>
+                <div class="class-details">
+                  <h4>Morning Cardio</h4>
+                  <p>All Levels</p>
+                </div>
+              </div>
+            </td>
+            <td>Sarah Johnson</td>
+            <td>45 min</td>
+            <td><button class="book-btn">Book Now</button></td>
+          </tr>
+
+          <tr class="schedule-row" data-day="monday" data-type="strength">
+            <td>09:30 AM</td>
+            <td>
+              <div class="class-item">
+                <div class="class-icon">
+                  <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="class-details">
+                  <h4>Power Lifting</h4>
+                  <p>Intermediate</p>
+                </div>
+              </div>
+            </td>
+            <td>Mike Reynolds</td>
+            <td>60 min</td>
+            <td><button class="book-btn">Book Now</button></td>
+          </tr>
+
+          <tr class="schedule-row" data-day="monday" data-type="yoga">
+            <td>05:30 PM</td>
+            <td>
+              <div class="class-item">
+                <div class="class-icon">
+                  <i class="fas fa-spa"></i>
+                </div>
+                <div class="class-details">
+                  <h4>Vinyasa Flow</h4>
+                  <p>All Levels</p>
+                </div>
+              </div>
+            </td>
+            <td>Emma Chen</td>
+            <td>60 min</td>
+            <td><button class="book-btn">Book Now</button></td>
+          </tr>
+
+          <tr class="schedule-row" data-day="monday" data-type="hiit">
+            <td>07:00 PM</td>
+            <td>
+              <div class="class-item">
+                <div class="class-icon">
+                  <i class="fas fa-fire"></i>
+                </div>
+                <div class="class-details">
+                  <h4>HIIT Circuit</h4>
+                  <p>Advanced</p>
+                </div>
+              </div>
+            </td>
+            <td>Jason Miller</td>
+            <td>45 min</td>
+            <td><button class="book-btn">Book Now</button></td>
+          </tr>
+
+          <!-- Tuesday Classes -->
+          <tr class="schedule-row" data-day="tuesday" data-type="dance">
+            <td>10:00 AM</td>
+            <td>
+              <div class="class-item">
+                <div class="class-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <div class="class-details">
+                  <h4>Zumba</h4>
+                  <p>All Levels</p>
+                </div>
+              </div>
+            </td>
+            <td>Maria Lopez</td>
+            <td>60 min</td>
+            <td><button class="book-btn">Book Now</button></td>
+          </tr>
+
+          <!-- Add more classes for other days -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer would be included here -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/schedule.js"></script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Dashboard - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#" id="logout-btn">Logout</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+      <div class="dashboard-sidebar">
+        <div class="user-profile">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3 id="user-name">John Doe</h3>
+          <p id="membership-type">Premium Member</p>
+        </div>
+        <ul class="dashboard-menu">
+          <li class="active" data-tab="overview">
+            <i class="fas fa-home"></i> Overview
+          </li>
+          <li data-tab="schedule">
+            <i class="fas fa-calendar-alt"></i> My Schedule
+          </li>
+          <li data-tab="progress">
+            <i class="fas fa-chart-line"></i> Fitness Progress
+          </li>
+          <li data-tab="classes"><i class="fas fa-users"></i> Book Classes</li>
+          <li data-tab="settings">
+            <i class="fas fa-cog"></i> Account Settings
+          </li>
+        </ul>
+      </div>
+
+      <div class="dashboard-content">
+        <!-- Overview Tab -->
+        <div class="dashboard-tab active" id="overview">
+          <h2>Dashboard Overview</h2>
+          <div class="stats-container">
+            <div class="stat-card">
+              <i class="fas fa-dumbbell"></i>
+              <h3>12</h3>
+              <p>Workouts This Month</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-fire-alt"></i>
+              <h3>8,540</h3>
+              <p>Calories Burned</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-clock"></i>
+              <h3>18.5</h3>
+              <p>Hours Active</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-users"></i>
+              <h3>5</h3>
+              <p>Classes Attended</p>
+            </div>
+          </div>
+
+          <div class="upcoming-classes">
+            <h3>Upcoming Classes</h3>
+            <div class="class-card">
+              <div class="class-time">Today, 6:00 PM</div>
+              <div class="class-details">
+                <h4>HIIT Training</h4>
+                <p>Instructor: Sarah Johnson</p>
+              </div>
+              <button class="btn-cancel">Cancel</button>
+            </div>
+            <div class="class-card">
+              <div class="class-time">Tomorrow, 7:30 AM</div>
+              <div class="class-details">
+                <h4>Yoga Basics</h4>
+                <p>Instructor: Michael Chen</p>
+              </div>
+              <button class="btn-cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other tabs would be implemented similarly -->
+        <!-- Replace the empty schedule tab with this content -->
+        <div class="dashboard-tab" id="schedule">
+          <h2>My Class Schedule</h2>
+          <div class="upcoming-classes">
+            <h3>Upcoming Classes</h3>
+            <div id="user-classes-container">
+              <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading your classes...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="class-recommendations">
+            <h3>Recommended Classes</h3>
+            <div class="recommended-classes">
+              <div class="class-card">
+                <div class="class-time">Monday, 6:30 PM</div>
+                <div class="class-details">
+                  <h4>Power Yoga</h4>
+                  <p>Instructor: Emma Wilson</p>
+                  <p>Perfect for your fitness goals!</p>
+                </div>
+                <button class="btn-book">Book Now</button>
+              </div>
+              <div class="class-card">
+                <div class="class-time">Wednesday, 5:45 PM</div>
+                <div class="class-details">
+                  <h4>HIIT Circuit</h4>
+                  <p>Instructor: Jason Miller</p>
+                  <p>Matches your previous bookings</p>
+                </div>
+                <button class="btn-book">Book Now</button>
+              </div>
+            </div>
+            <a href="../info/schedule.html" class="view-all-link"
+              >View All Classes <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+        <div class="dashboard-tab" id="workouts">
+          <h2>Workout Tracker</h2>
+          <div class="workout-controls">
+            <button class="btn-primary" id="add-workout-btn">
+              Log New Workout
+            </button>
+            <div class="workout-filter">
+              <label for="workout-view">View:</label>
+              <select id="workout-view">
+                <option value="recent">Recent Workouts</option>
+                <option value="month">This Month</option>
+                <option value="all">All History</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="workout-stats">
+            <div class="stat-card">
+              <i class="fas fa-calendar-check"></i>
+              <h3 id="workout-count">0</h3>
+              <p>Workouts This Month</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-stopwatch"></i>
+              <h3 id="total-time">0</h3>
+              <p>Total Hours</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-bolt"></i>
+              <h3 id="avg-intensity">0</h3>
+              <p>Avg. Intensity</p>
+            </div>
+          </div>
+
+          <div class="workout-history" id="workout-history">
+            <!-- Workout history will be populated by JavaScript -->
+          </div>
+
+          <div id="workout-form-container" class="hidden">
+            <h3>Log Workout</h3>
+            <form id="workout-form">
+              <div class="form-group">
+                <label for="workout-type">Workout Type</label>
+                <select id="workout-type" required>
+                  <option value="">Select Type</option>
+                  <option value="strength">Strength Training</option>
+                  <option value="cardio">Cardio</option>
+                  <option value="hiit">HIIT</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workout-date">Date</label>
+                <input type="date" id="workout-date" required />
+              </div>
+              <div class="form-group">
+                <label for="workout-duration">Duration (minutes)</label>
+                <input type="number" id="workout-duration" min="1" required />
+              </div>
+              <div class="form-group">
+                <label for="workout-intensity">Intensity</label>
+                <select id="workout-intensity" required>
+                  <option value="1">Light</option>
+                  <option value="2">Moderate</option>
+                  <option value="3">Intense</option>
+                  <option value="4">Very Intense</option>
+                  <option value="5">Maximum</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workout-notes">Notes</label>
+                <textarea id="workout-notes" rows="3"></textarea>
+              </div>
+              <div class="form-buttons">
+                <button type="button" id="cancel-workout-btn">Cancel</button>
+                <button type="submit" class="btn-primary">Save Workout</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="dashboard-tab" id="progress">
+          <h2>Fitness Progress</h2>
+
+          <div class="progress-metrics">
+            <div class="metric-card">
+              <div class="metric-header">
+                <h3>Weight Tracking</h3>
+                <button class="btn-sm" id="add-weight-btn">
+                  <i class="fas fa-plus"></i> Add
+                </button>
+              </div>
+              <div class="metric-chart">
+                <canvas id="weight-chart"></canvas>
+              </div>
+              <div class="metric-stats">
+                <div class="stat">
+                  <span>Starting</span>
+                  <strong id="starting-weight">0 kg</strong>
+                </div>
+                <div class="stat">
+                  <span>Current</span>
+                  <strong id="current-weight">0 kg</strong>
+                </div>
+                <div class="stat">
+                  <span>Change</span>
+                  <strong id="weight-change">0 kg</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <h3>Body Measurements</h3>
+                <button class="btn-sm" id="add-measurement-btn">
+                  <i class="fas fa-plus"></i> Add
+                </button>
+              </div>
+              <div class="measurements-grid">
+                <div class="measurement-item">
+                  <span>Chest</span>
+                  <div class="measurement-bar">
+                    <div class="measurement-progress" style="width: 70%"></div>
+                  </div>
+                  <strong id="chest-measurement">0 cm</strong>
+                </div>
+                <div class="measurement-item">
+                  <span>Waist</span>
+                  <div class="measurement-bar">
+                    <div class="measurement-progress" style="width: 60%"></div>
+                  </div>
+                  <strong id="waist-measurement">0 cm</strong>
+                </div>
+                <div class="measurement-item">
+                  <span>Hips</span>
+                  <div class="measurement-bar">
+                    <div class="measurement-progress" style="width: 65%"></div>
+                  </div>
+                  <strong id="hips-measurement">0 cm</strong>
+                </div>
+                <div class="measurement-item">
+                  <span>Arms</span>
+                  <div class="measurement-bar">
+                    <div class="measurement-progress" style="width: 75%"></div>
+                  </div>
+                  <strong id="arms-measurement">0 cm</strong>
+                </div>
+                <div class="measurement-item">
+                  <span>Thighs</span>
+                  <div class="measurement-bar">
+                    <div class="measurement-progress" style="width: 80%"></div>
+                  </div>
+                  <strong id="thighs-measurement">0 cm</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="progress-photos">
+            <h3>Progress Photos</h3>
+            <div class="photos-grid">
+              <div class="photo-upload">
+                <input type="file" id="photo-upload" accept="image/*" hidden />
+                <label for="photo-upload" class="upload-area">
+                  <i class="fas fa-camera"></i>
+                  <span>Add Photo</span>
+                </label>
+              </div>
+              <!-- Photos will be added here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="progress-goals">
+            <div class="goals-header">
+              <h3>Fitness Goals</h3>
+              <button class="btn-sm" id="add-goal-btn">
+                <i class="fas fa-plus"></i> New Goal
+              </button>
+            </div>
+            <div class="goals-list" id="goals-list">
+              <!-- Goals will be added here by JavaScript -->
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-tab" id="classes"><!-- Classes content --></div>
+        <div class="dashboard-tab" id="settings"><!-- Settings content --></div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+  </body>
+</html>

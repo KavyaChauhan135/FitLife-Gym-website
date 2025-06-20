@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Trainer - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .booking-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1571388208497-71bedc66e932")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .booking-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .trainers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .trainer-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .trainer-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .trainer-image {
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .trainer-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .trainer-card:hover .trainer-image img {
+        transform: scale(1.1);
+      }
+
+      .trainer-info {
+        padding: 1.5rem;
+      }
+
+      .trainer-specialties {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .specialty-tag {
+        background: var(--light-bg);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .trainer-rating {
+        color: #ffc107;
+        margin-bottom: 1rem;
+      }
+
+      .booking-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2rem;
+        position: relative;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #777;
+      }
+
+      .booking-form {
+        margin-top: 1.5rem;
+      }
+
+      .booking-form .input-group {
+        margin-bottom: 1rem;
+      }
+
+      .booking-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .booking-form input,
+      .booking-form select,
+      .booking-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .time-slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .time-slot {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .time-slot:hover {
+        border-color: var(--primary-color);
+      }
+
+      .time-slot.selected {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .time-slot.unavailable {
+        background: #f5f5f5;
+        color: #aaa;
+        cursor: not-allowed;
+      }
+
+      .booking-button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .booking-button:hover {
+        background: #e63946;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../dashboard/dashboard.html">Dashboard</a>
+        <a href="#" id="logout-btn">Logout</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="booking-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Book a Personal Trainer</h1>
+        <p>Take your fitness journey to the next level with expert guidance</p>
+      </div>
+    </section>
+
+    <!-- Booking Content -->
+    <div class="booking-container">
+      <div class="booking-intro" data-aos="fade-up">
+        <h2>Our Expert Trainers</h2>
+        <p>
+          Choose from our team of certified personal trainers, each specializing
+          in different areas of fitness. Book a session that fits your schedule
+          and goals.
+        </p>
+      </div>
+
+      <div class="trainers-grid">
+        <!-- Trainer 1 -->
+        <div class="trainer-card" data-aos="fade-up">
+          <div class="trainer-image">
+            <img
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
+              alt="Trainer"
+            />
+          </div>
+          <div class="trainer-info">
+            <h3>Michael Johnson</h3>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>4.8 (42 reviews)</span>
+            </div>
+            <div class="trainer-specialties">
+              <span class="specialty-tag">Strength Training</span>
+              <span class="specialty-tag">Bodybuilding</span>
+              <span class="specialty-tag">Nutrition</span>
+            </div>
+            <p>
+              Michael specializes in strength training and bodybuilding with 10+
+              years of experience helping clients achieve their muscle building
+              goals.
+            </p>
+            <button
+              class="cta-button book-trainer-btn"
+              data-trainer="Michael Johnson"
+              data-specialties="Strength Training, Bodybuilding, Nutrition"
+              data-image="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"
+            >
+              Book a Session
+            </button>
+          </div>
+        </div>
+
+        <!-- Trainer 2 -->
+        <div class="trainer-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="trainer-image">
+            <img
+              src="https://images.unsplash.com/photo-1518310383802-640c2de311b6"
+              alt="Trainer"
+            />
+          </div>
+          <div class="trainer-info">
+            <h3>Sarah Williams</h3>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>5.0 (38 reviews)</span>
+            </div>
+            <div class="trainer-specialties">
+              <span class="specialty-tag">HIIT</span>
+              <span class="specialty-tag">Weight Loss</span>
+              <span class="specialty-tag">Functional Training</span>
+            </div>
+            <p>
+              Sarah is a certified HIIT instructor who specializes in weight
+              loss and functional training programs tailored to individual
+              needs.
+            </p>
+            <button
+              class="cta-button book-trainer-btn"
+              data-trainer="Sarah Williams"
+              data-specialties="HIIT, Weight Loss, Functional Training"
+              data-image="https://images.unsplash.com/photo-1518310383802-640c2de311b6"
+            >
+              Book a Session
+            </button>
+          </div>
+        </div>
+
+        <!-- Trainer 3 -->
+        <div class="trainer-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="trainer-image">
+            <img
+              src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd"
+              alt="Trainer"
+            />
+          </div>
+          <div class="trainer-info">
+            <h3>David Chen</h3>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>4.1 (27 reviews)</span>
+            </div>
+            <div class="trainer-specialties">
+              <span class="specialty-tag">Yoga</span>
+              <span class="specialty-tag">Flexibility</span>
+              <span class="specialty-tag">Meditation</span>
+            </div>
+            <p>
+              David is a yoga instructor with expertise in improving flexibility
+              and mindfulness through specialized yoga and meditation
+              techniques.
+            </p>
+            <button
+              class="cta-button book-trainer-btn"
+              data-trainer="David Chen"
+              data-specialties="Yoga, Flexibility, Meditation"
+              data-image="https://images.unsplash.com/photo-1517838277536-f5f99be501cd"
+            >
+              Book a Session
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="booking-modal">
+      <div class="modal-content">
+        <button class="close-modal" id="close-modal">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <div class="trainer-profile">
+            <img id="modal-trainer-image" src="" alt="Trainer" />
+            <div>
+              <h3 id="modal-trainer-name"></h3>
+              <p id="modal-trainer-specialties"></p>
+            </div>
+          </div>
+        </div>
+        <form class="booking-form" id="booking-form">
+          <div class="input-group">
+            <label for="booking-date">Select Date</label>
+            <input type="date" id="booking-date" required />
+          </div>
+
+          <div class="input-group">
+            <label for="booking-time">Available Time Slots</label>
+            <div class="time-slots" id="time-slots">
+              <!-- Time slots will be generated dynamically -->
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="session-type">Session Type</label>
+            <select id="session-type" required>
+              <option value="">Select session type</option>
+              <option value="assessment">Fitness Assessment</option>
+              <option value="personal">Personal Training</option>
+              <option value="specialized">Specialized Program</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="session-notes">Notes for Trainer</label>
+            <textarea
+              id="session-notes"
+              rows="3"
+              placeholder="Describe your fitness goals or any specific areas you want to focus on"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="booking-button">Confirm Booking</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>FitLife</h2>
+          <p>Your Path to Fitness Excellence</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Fitness Ave, Gym City</p>
+          <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+          <p><i class="fas fa-envelope"></i> info@fitlifegym.com</p>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 FitLife Gym. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../trainer-booking.js"></script>
+  </body>
+</html>

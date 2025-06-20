@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Classes - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .service-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .service-content {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .service-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .service-feature {
+        background: var(--light-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .service-feature i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .service-cta {
+        text-align: center;
+        margin: 3rem 0;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: var(--transition);
+      }
+
+      .back-button:hover {
+        color: var(--primary-color);
+      }
+
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+
+      .back-button:hover i {
+        transform: translateX(-5px);
+      }
+
+      .class-schedule {
+        margin: 3rem 0;
+        overflow-x: auto;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+
+      .schedule-table th,
+      .schedule-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      .schedule-table th {
+        background: var(--primary-color);
+        color: var(--white);
+      }
+
+      .schedule-table tr:nth-child(even) {
+        background: var(--light-bg);
+      }
+
+      .class-type {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+
+      .class-type.cardio {
+        background: rgba(255, 77, 77, 0.1);
+        color: var(--primary-color);
+      }
+
+      .class-type.strength {
+        background: rgba(0, 123, 255, 0.1);
+        color: #007bff;
+      }
+
+      .class-type.flexibility {
+        background: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+      }
+
+      .class-type.hiit {
+        background: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../../index.html#pricing">Pricing</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#trainers">Trainers</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Service Hero -->
+    <section class="service-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Group Classes</h1>
+        <p>High-energy group workouts for all fitness levels</p>
+      </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+      <a href="../../index.html#services" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Services
+      </a>
+
+      <div data-aos="fade-up">
+        <h2>Join Our Community of Fitness Enthusiasts</h2>
+        <p>
+          Our group classes offer a fun, energetic environment where you can
+          push your limits alongside others with similar fitness goals. Led by
+          our expert instructors, these classes combine effective workouts with
+          the motivation and camaraderie that comes from exercising in a group
+          setting.
+        </p>
+      </div>
+
+      <div class="service-features">
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-users"></i>
+          <h3>Motivating Environment</h3>
+          <p>
+            Feed off the energy of others and stay motivated throughout your
+            workout.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-dumbbell"></i>
+          <h3>Variety of Classes</h3>
+          <p>
+            From high-intensity cardio to strength training and flexibility, we
+            offer classes for every fitness goal.
+          </p>
+        </div>
+
+        <div class="service-feature" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-user-tie"></i>
+          <h3>Expert Instructors</h3>
+          <p>
+            Our certified instructors provide guidance and motivation to help
+            you get the most out of each session.
+          </p>
+        </div>
+      </div>
+
+      <div data-aos="fade-up">
+        <h2>Our Class Schedule</h2>
+        <p>
+          We offer a wide variety of group classes throughout the week to
+          accommodate different schedules and fitness preferences. Whether
+          you're an early bird or prefer evening workouts, you'll find classes
+          that fit your lifestyle.
+        </p>
+
+        <div class="class-schedule">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6:00 AM</td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+              </tr>
+              <tr>
+                <td>9:00 AM</td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+              </tr>
+              <tr>
+                <td>12:00 PM</td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type hiit">HIIT</span></td>
+              </tr>
+              <tr>
+                <td>5:00 PM</td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+              </tr>
+              <tr>
+                <td>7:00 PM</td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type cardio">Cardio Blast</span></td>
+                <td><span class="class-type hiit">HIIT</span></td>
+                <td>
+                  <span class="class-type strength">Strength Training</span>
+                </td>
+                <td><span class="class-type flexibility">Yoga</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="service-cta" data-aos="fade-up">
+        <h2>Ready to Join the Fun?</h2>
+        <p>
+          Sign up for a class today and experience the energy of group fitness!
+        </p>
+        <a href="../../index.html#contact" class="cta-button">Join a Class</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FitLife</h3>
+          <p>Transform your body, transform your life.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#trainers">Trainers</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FitLife. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+  </body>
+</html>

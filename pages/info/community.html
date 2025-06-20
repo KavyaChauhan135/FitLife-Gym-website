@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Community - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .community-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1517838277536-f5f99be501cd")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .community-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .community-grid {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .community-sidebar {
+        background: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        position: sticky;
+        top: 100px;
+      }
+
+      .forum-categories {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+      }
+
+      .forum-categories li {
+        margin-bottom: 0.5rem;
+      }
+
+      .forum-categories a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: 5px;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .forum-categories a:hover,
+      .forum-categories a.active {
+        background: var(--white);
+        color: var(--primary-color);
+      }
+
+      .forum-categories a i {
+        width: 20px;
+      }
+
+      .forum-content {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .forum-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .forum-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .forum-search {
+        position: relative;
+      }
+
+      .forum-search input {
+        padding: 0.5rem 1rem 0.5rem 2.5rem;
+        border: 1px solid #ddd;
+        border-radius: 30px;
+        width: 250px;
+      }
+
+      .forum-search i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+      }
+
+      .discussion-list {
+        margin-top: 1.5rem;
+      }
+
+      .discussion-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .discussion-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--light-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+      }
+
+      .discussion-content {
+        flex: 1;
+      }
+
+      .discussion-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: #777;
+      }
+
+      .discussion-title {
+        margin: 0 0 0.5rem 0;
+      }
+
+      .discussion-title a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .discussion-title a:hover {
+        color: var(--primary-color);
+      }
+
+      .discussion-stats {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .discussion-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .discussion-stat i {
+        color: var(--primary-color);
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+      }
+
+      .pagination a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--light-bg);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .pagination a:hover,
+      .pagination a.active {
+        background: var(--primary-color);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="membership-plans.html">Membership</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="nutrition.html">Nutrition</a>
+        <a href="blog.html">Blog</a>
+        <a href="login.html" class="login-link">Login</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="community-hero">
+      <div class="hero-content">
+        <h1>FitLife Community</h1>
+        <p>Connect, share, and grow with fellow fitness enthusiasts</p>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-container">
+      <div class="section-intro" data-aos="fade-up">
+        <h2>Fitness Community Forum</h2>
+        <p>
+          Join our community discussions to share your fitness journey, ask
+          questions, and connect with other members. Get advice, find workout
+          partners, and stay motivated together.
+        </p>
+      </div>
+
+      <div class="community-grid">
+        <!-- Sidebar -->
+        <div class="community-sidebar" data-aos="fade-right">
+          <h3>Categories</h3>
+          <ul class="forum-categories">
+            <li>
+              <a href="#" class="active">
+                <i class="fas fa-fire"></i> Popular Discussions
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-dumbbell"></i> Strength Training
+              </a>
+            </li>
+            <li>
+              <a href="#"> <i class="fas fa-running"></i> Cardio & HIIT </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-apple-alt"></i> Nutrition & Diet
+              </a>
+            </li>
+            <li>
+              <a href="#"> <i class="fas fa-heart"></i> Wellness & Recovery </a>
+            </li>
+            <li>
+              <a href="#"> <i class="fas fa-users"></i> Success Stories </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-question-circle"></i> Ask a Trainer
+              </a>
+            </li>
+          </ul>
+
+          <h3>Community Stats</h3>
+          <div class="community-stats">
+            <div class="stat-item">
+              <span>Members</span>
+              <strong>1,245</strong>
+            </div>
+            <div class="stat-item">
+              <span>Discussions</span>
+              <strong>3,872</strong>
+            </div>
+            <div class="stat-item">
+              <span>Comments</span>
+              <strong>12,568</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forum Content -->
+        <div class="forum-content" data-aos="fade-up">
+          <div class="forum-header">
+            <h3>Popular Discussions</h3>
+            <div class="forum-actions">
+              <div class="forum-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search discussions..." />
+              </div>
+              <button class="btn-primary">
+                <i class="fas fa-plus"></i> New Discussion
+              </button>
+            </div>
+          </div>
+
+          <div class="discussion-list">
+            <!-- Discussion items will be populated here -->
+            <div class="discussion-item">
+              <div class="discussion-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="discussion-content">
+                <div class="discussion-meta">
+                  <span>Posted by <strong>JaneFitness</strong></span>
+                  <span>2 days ago</span>
+                  <span class="discussion-category">Strength Training</span>
+                </div>
+                <h4 class="discussion-title">
+                  <a href="#">Best approach for increasing deadlift max?</a>
+                </h4>
+                <p>
+                  I've been stuck at the same weight for my deadlift for about a
+                  month now. Has anyone had success breaking through plateaus
+                  with specific programs or techniques?
+                </p>
+                <div class="discussion-stats">
+                  <div class="discussion-stat">
+                    <i class="fas fa-comment"></i>
+                    <span>24 replies</span>
+                  </div>
+                  <div class="discussion-stat">
+                    <i class="fas fa-eye"></i>
+                    <span>156 views</span>
+                  </div>
+                  <div class="discussion-stat">
+                    <i class="fas fa-heart"></i>
+                    <span>32 likes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="discussion-item">
+              <div class="discussion-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="discussion-content">
+                <div class="discussion-meta">
+                  <span>Posted by <strong>FitnessPro</strong></span>
+                  <span>3 days ago</span>
+                  <span class="discussion-category">Nutrition & Diet</span>
+                </div>
+                <h4 class="discussion-title">
+                  <a href="#">Meal prep ideas for busy professionals</a>
+                </h4>
+                <p>
+                  Looking for some quick and healthy meal prep ideas that don't
+                  take hours on Sunday. What are your go-to recipes that save
+                  time but still help with fitness goals?
+                </p>
+                <div class="discussion-stats">
+                  <div class="discussion-stat">
+                    <i class="fas fa-comment"></i>
+                    <span>42 replies</span>
+                  </div>
+                  <div class="discussion-stat">
+                    <i class="fas fa-eye"></i>
+                    <span>289 views</span>
+                  </div>
+                  <div class="discussion-stat">
+                    <i class="fas fa-heart"></i>
+                    <span>56 likes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- More discussion items would go here -->
+          </div>
+
+          <div class="pagination">
+            <a href="#"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FitLife</h3>
+          <p>Transform your body, transform your life.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#trainers">Trainers</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FitLife. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/community.js"></script>
+  </body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Blog - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .blog-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .blog-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 2rem;
+      }
+
+      .blog-posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .blog-post {
+        background: var(--white);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .blog-post:hover {
+        transform: translateY(-10px);
+      }
+
+      .blog-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .blog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .blog-post:hover .blog-image img {
+        transform: scale(1.1);
+      }
+
+      .blog-content {
+        padding: 1.5rem;
+      }
+
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #777;
+      }
+
+      .blog-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .blog-sidebar {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        align-self: start;
+      }
+
+      .sidebar-section {
+        margin-bottom: 2rem;
+      }
+
+      .sidebar-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .sidebar-section h3 {
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .category-list,
+      .recent-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .category-list li,
+      .recent-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .category-list li:last-child,
+      .recent-list li:last-child {
+        border-bottom: none;
+      }
+
+      .category-list a,
+      .recent-list a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .category-list a:hover,
+      .recent-list a:hover {
+        color: var(--primary-color);
+      }
+
+      .category-count {
+        background: var(--light-bg);
+        padding: 0.2rem 0.5rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .search-form {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .search-form input {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .search-form button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .featured-post {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .featured-post .blog-image {
+        height: 100%;
+      }
+
+      .featured-post .blog-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .featured-tag {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 3rem;
+      }
+
+      .pagination a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--white);
+        border-radius: 50%;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .pagination a:hover,
+      .pagination a.active {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      @media (max-width: 992px) {
+        .blog-container {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-post {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="membership-plans.html">Membership</a>
+        <a href="#" class="active">Blog</a>
+        <a href="../../index.html#contact">Contact</a>
+        <a href="../auth/login.html" class="login-link">Login</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Fitness Blog</h1>
+        <p>Expert tips, workout ideas, and nutrition advice</p>
+      </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="blog-container">
+      <main>
+        <div class="blog-posts">
+          <!-- Featured Post -->
+          <article class="blog-post featured-post" data-aos="fade-up">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa"
+                alt="Strength Training Fundamentals"
+              />
+            </div>
+            <div class="blog-content">
+              <span class="featured-tag">Featured</span>
+              <h2>Strength Training Fundamentals: Building Your Foundation</h2>
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                <span><i class="far fa-user"></i> Coach Mike</span>
+              </div>
+              <p>
+                Strength training is more than just lifting weights—it's about
+                building a foundation for a healthier, more functional body.
+                Learn the key principles that will help you develop a
+                sustainable and effective strength training routine.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+
+          <!-- Regular Posts -->
+          <article class="blog-post" data-aos="fade-up" data-aos-delay="100">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1498837167922-ddd27525d352"
+                alt="Nutrition Myths"
+              />
+            </div>
+            <div class="blog-content">
+              <h3>5 Nutrition Myths Debunked by Science</h3>
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> June 10, 2023</span>
+                <span><i class="far fa-user"></i> Nutritionist Sarah</span>
+              </div>
+              <p>
+                The world of nutrition is filled with misconceptions. We break
+                down five common nutrition myths and provide evidence-based
+                facts to help you make better dietary choices.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+
+          <article class="blog-post" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1518611012118-696072aa579a"
+                alt="HIIT Workouts"
+              />
+            </div>
+            <div class="blog-content">
+              <h3>HIIT Workouts: Maximize Results in Minimal Time</h3>
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                <span><i class="far fa-user"></i> Trainer Alex</span>
+              </div>
+              <p>
+                High-Intensity Interval Training (HIIT) has revolutionized how
+                we approach cardio. Discover how these short, intense workouts
+                can boost your metabolism and improve cardiovascular health.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+
+          <article class="blog-post" data-aos="fade-up" data-aos-delay="300">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b"
+                alt="Yoga Benefits"
+              />
+            </div>
+            <div class="blog-content">
+              <h3>The Mind-Body Connection: How Yoga Transforms Your Health</h3>
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                <span><i class="far fa-user"></i> Yoga Instructor Emma</span>
+              </div>
+              <p>
+                Yoga is more than just flexibility—it's a holistic practice that
+                benefits both physical and mental health. Learn how regular yoga
+                practice can reduce stress, improve sleep, and enhance overall
+                wellbeing.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#"><i class="fas fa-chevron-right"></i></a>
+        </div>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="blog-sidebar">
+        <!-- Search -->
+        <div class="sidebar-section">
+          <h3>Search</h3>
+          <form class="search-form">
+            <input type="text" placeholder="Search articles..." />
+            <button type="submit"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-section">
+          <h3>Categories</h3>
+          <ul class="category-list">
+            <li>
+              <a href="#"
+                >Strength Training <span class="category-count">12</span></a
+              >
+            </li>
+            <li>
+              <a href="#">Nutrition <span class="category-count">8</span></a>
+            </li>
+            <li>
+              <a href="#">Cardio <span class="category-count">6</span></a>
+            </li>
+            <li>
+              <a href="#"
+                >Yoga & Flexibility <span class="category-count">5</span></a
+              >
+            </li>
+            <li>
+              <a href="#">Recovery <span class="category-count">4</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="sidebar-section">
+          <h3>Recent Posts</h3>
+          <ul class="recent-list">
+            <li>
+              <a href="#">How to Stay Motivated During Your Fitness Journey</a>
+            </li>
+            <li>
+              <a href="#">The Importance of Proper Form in Weight Training</a>
+            </li>
+            <li>
+              <a href="#">Meal Prep 101: Save Time and Stay Healthy</a>
+            </li>
+            <li>
+              <a href="#">Recovery Techniques for Athletes</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-section">
+          <h3>Popular Tags</h3>
+          <div class="tag-cloud">
+            <a href="#" class="tag">Fitness</a>
+            <a href="#" class="tag">Nutrition</a>
+            <a href="#" class="tag">Workout</a>
+            <a href="#" class="tag">Strength</a>
+            <a href="#" class="tag">Cardio</a>
+            <a href="#" class="tag">Yoga</a>
+            <a href="#" class="tag">Health</a>
+            <a href="#" class="tag">Wellness</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>FitLife</h3>
+          <p>Transform your body, transform your life.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#trainers">Trainers</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FitLife. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+  </body>
+</html>

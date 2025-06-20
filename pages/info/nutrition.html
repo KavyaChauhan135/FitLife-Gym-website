@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutrition Advice - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .nutrition-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1490645935967-10de6ba17061")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .meal-plans {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .meal-plan {
+        background: var(--light-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .meal-plan:hover {
+        transform: translateY(-10px);
+      }
+
+      .meal-plan-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .meal-plan-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .meal-plan:hover .meal-plan-image img {
+        transform: scale(1.1);
+      }
+
+      .meal-plan-content {
+        padding: 1.5rem;
+      }
+
+      .nutrition-calculator {
+        background: var(--light-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 3rem 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .calculator-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .nutrition-tips {
+        margin: 3rem 0;
+      }
+
+      .tip-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .tip-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .tip-card i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+
+      .calculator-results {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+
+      .result-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .result-item strong {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-top: 0.5rem;
+      }
+
+      .results-disclaimer {
+        font-size: 0.9rem;
+        color: #777;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .service-cta {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1498837167922-ddd27525d352")
+            center/cover;
+        padding: 3rem 2rem;
+        text-align: center;
+        border-radius: 10px;
+        color: var(--white);
+        margin: 4rem 0 2rem;
+      }
+
+      .service-cta h3 {
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+      }
+
+      .service-cta .cta-button {
+        margin-top: 1.5rem;
+        display: inline-block;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .meal-plans {
+          grid-template-columns: 1fr;
+        }
+
+        .calculator-form {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="../../index.html#pricing">Pricing</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#trainers">Trainers</a>
+        <a href="../../index.html#contact">Contact</a>
+        <a href="../auth/login.html" class="login-link">Login</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Nutrition Hero -->
+    <section class="nutrition-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Fuel Your Fitness Journey</h1>
+        <p>Expert nutrition advice to complement your workout routine</p>
+      </div>
+    </section>
+
+    <!-- Nutrition Content -->
+    <div class="service-content">
+      <a href="../../index.html#services" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Services
+      </a>
+
+      <h2 data-aos="fade-up">Nutrition Services</h2>
+      <p data-aos="fade-up">
+        At FitLife, we believe that proper nutrition is the foundation of any
+        successful fitness journey. Our nutrition services are designed to help
+        you fuel your body correctly, optimize your workout results, and achieve
+        your health goals faster.
+      </p>
+
+      <h3 data-aos="fade-up">Personalized Meal Plans</h3>
+      <div class="meal-plans">
+        <div class="meal-plan" data-aos="fade-up" data-aos-delay="100">
+          <div class="meal-plan-image">
+            <img
+              src="https://images.unsplash.com/photo-1547592180-85f173990554"
+              alt="Weight Loss Meal Plan"
+            />
+          </div>
+          <div class="meal-plan-content">
+            <h4>Weight Loss Plan</h4>
+            <p>
+              Carefully crafted meals to help you lose weight while maintaining
+              energy for workouts.
+            </p>
+            <a href="#" class="btn-secondary">Learn More</a>
+          </div>
+        </div>
+
+        <div class="meal-plan" data-aos="fade-up" data-aos-delay="200">
+          <div class="meal-plan-image">
+            <img
+              src="https://images.unsplash.com/photo-1532550907401-a500c9a57435"
+              alt="Muscle Building Meal Plan"
+            />
+          </div>
+          <div class="meal-plan-content">
+            <h4>Muscle Building Plan</h4>
+            <p>
+              Protein-rich meals designed to support muscle growth and recovery.
+            </p>
+            <a href="#" class="btn-secondary">Learn More</a>
+          </div>
+        </div>
+
+        <div class="meal-plan" data-aos="fade-up" data-aos-delay="300">
+          <div class="meal-plan-image">
+            <img
+              src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2"
+              alt="Performance Meal Plan"
+            />
+          </div>
+          <div class="meal-plan-content">
+            <h4>Performance Plan</h4>
+            <p>
+              Balanced nutrition to optimize athletic performance and endurance.
+            </p>
+            <a href="#" class="btn-secondary">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nutrition Calculator -->
+      <div class="nutrition-calculator" data-aos="fade-up">
+        <h3>Calorie & Macronutrient Calculator</h3>
+        <p>
+          Use our calculator to estimate your daily caloric needs and
+          macronutrient distribution based on your goals.
+        </p>
+
+        <form class="calculator-form">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" min="15" max="80" required />
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input
+              type="number"
+              id="weight"
+              min="40"
+              max="200"
+              step="0.1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" min="140" max="220" required />
+          </div>
+
+          <div class="form-group">
+            <label for="activity">Activity Level</label>
+            <select id="activity" required>
+              <option value="">Select Activity Level</option>
+              <option value="1.2">Sedentary (little or no exercise)</option>
+              <option value="1.375">
+                Lightly active (light exercise 1-3 days/week)
+              </option>
+              <option value="1.55">
+                Moderately active (moderate exercise 3-5 days/week)
+              </option>
+              <option value="1.725">
+                Very active (hard exercise 6-7 days/week)
+              </option>
+              <option value="1.9">
+                Extra active (very hard exercise & physical job)
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="goal">Goal</label>
+            <select id="goal" required>
+              <option value="">Select Goal</option>
+              <option value="lose">Weight Loss</option>
+              <option value="maintain">Maintain Weight</option>
+              <option value="gain">Build Muscle</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">Calculate</button>
+        </form>
+
+        <div
+          id="calculator-results"
+          class="calculator-results"
+          style="display: none"
+        >
+          <h4>Your Results</h4>
+          <div class="results-grid">
+            <div class="result-item">
+              <span>Daily Calories:</span>
+              <strong id="result-calories">0</strong>
+            </div>
+            <div class="result-item">
+              <span>Protein (g):</span>
+              <strong id="result-protein">0</strong>
+            </div>
+            <div class="result-item">
+              <span>Carbs (g):</span>
+              <strong id="result-carbs">0</strong>
+            </div>
+            <div class="result-item">
+              <span>Fat (g):</span>
+              <strong id="result-fat">0</strong>
+            </div>
+          </div>
+          <p class="results-disclaimer">
+            These calculations provide estimates only. For personalized advice,
+            consult with our nutrition experts.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nutrition Tips -->
+      <div class="nutrition-tips">
+        <h3 data-aos="fade-up">Nutrition Tips for Fitness Success</h3>
+
+        <div class="tip-card" data-aos="fade-up">
+          <i class="fas fa-apple-alt"></i>
+          <div>
+            <h4>Prioritize Whole Foods</h4>
+            <p>
+              Focus on consuming whole, unprocessed foods like fruits,
+              vegetables, lean proteins, whole grains, and healthy fats for
+              optimal nutrition.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-card" data-aos="fade-up">
+          <i class="fas fa-tint"></i>
+          <div>
+            <h4>Stay Hydrated</h4>
+            <p>
+              Drink at least 8-10 glasses of water daily, and more when
+              exercising. Proper hydration improves performance and recovery.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-card" data-aos="fade-up">
+          <i class="fas fa-clock"></i>
+          <div>
+            <h4>Timing Matters</h4>
+            <p>
+              Consume protein and carbs within 30-60 minutes after your workout
+              to optimize recovery and muscle growth.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-card" data-aos="fade-up">
+          <i class="fas fa-balance-scale"></i>
+          <div>
+            <h4>Balance Your Plate</h4>
+            <p>
+              Aim for a balanced plate with 1/4 protein, 1/4 complex carbs, and
+              1/2 vegetables for most meals.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-cta" data-aos="fade-up">
+        <h3>Ready to Transform Your Nutrition?</h3>
+        <p>Schedule a consultation with one of our nutrition experts today.</p>
+        <a href="#" class="cta-button">Book Consultation</a>
+      </div>
+    </div>
+
+    <!-- Footer would be included here -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/nutrition.js"></script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Tracker - FitLife Gym</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      .tracker-hero {
+        height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1579126038374-6064e9370f0f")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 80px;
+      }
+
+      .tracker-container {
+        padding: var(--section-padding);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .tracker-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .tracker-sidebar {
+        background: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        position: sticky;
+        top: 100px;
+      }
+
+      .workout-form {
+        margin-top: 1.5rem;
+      }
+
+      .workout-form .input-group {
+        margin-bottom: 1rem;
+      }
+
+      .workout-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .workout-form input,
+      .workout-form select,
+      .workout-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .workout-form button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .workout-form button:hover {
+        background: #e63946;
+      }
+
+      .workout-log {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .workout-entry {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .workout-entry:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .workout-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .workout-date {
+        font-size: 0.9rem;
+        color: #777;
+      }
+
+      .workout-exercises {
+        margin-top: 1rem;
+      }
+
+      .exercise-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+      }
+
+      .progress-charts {
+        margin-top: 2rem;
+      }
+
+      .chart-container {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">FitLife</div>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../index.html#services">Services</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#" id="logout-btn">Logout</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="tracker-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Track Your Fitness Journey</h1>
+        <p>Log workouts, track progress, and achieve your fitness goals</p>
+      </div>
+    </section>
+
+    <!-- Tracker Content -->
+    <div class="tracker-container">
+      <div class="tracker-intro" data-aos="fade-up">
+        <h2>Your Fitness Tracker</h2>
+        <p>
+          Keep track of your workouts, monitor your progress, and stay motivated
+          on your fitness journey.
+        </p>
+      </div>
+
+      <div class="tracker-grid">
+        <div class="tracker-sidebar" data-aos="fade-right">
+          <h3>Add New Workout</h3>
+          <form class="workout-form" id="workout-form">
+            <div class="input-group">
+              <label for="workout-type">Workout Type</label>
+              <select id="workout-type" required>
+                <option value="">Select workout type</option>
+                <option value="strength">Strength Training</option>
+                <option value="cardio">Cardio</option>
+                <option value="hiit">HIIT</option>
+                <option value="yoga">Yoga</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="workout-date">Date</label>
+              <input type="date" id="workout-date" required />
+            </div>
+
+            <div class="input-group">
+              <label for="workout-duration">Duration (minutes)</label>
+              <input type="number" id="workout-duration" min="1" required />
+            </div>
+
+            <div class="input-group">
+              <label for="workout-notes">Notes</label>
+              <textarea
+                id="workout-notes"
+                rows="3"
+                placeholder="Describe your workout"
+              ></textarea>
+            </div>
+
+            <button type="submit">Log Workout</button>
+          </form>
+        </div>
+
+        <div class="workout-log" data-aos="fade-left">
+          <h3>Recent Workouts</h3>
+          <div id="workout-entries">
+            <!-- Workout entries will be added here dynamically -->
+            <div class="no-workouts" id="no-workouts">
+              <p>
+                No workouts logged yet. Start tracking your fitness journey!
+              </p>
+            </div>
+          </div>
+
+          <div class="progress-charts">
+            <h3>Your Progress</h3>
+            <div class="chart-container">
+              <h4>Workout Frequency</h4>
+              <canvas id="frequency-chart"></canvas>
+            </div>
+
+            <div class="chart-container">
+              <h4>Workout Duration</h4>
+              <canvas id="duration-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>FitLife</h2>
+          <p>Your Path to Fitness Excellence</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#services">Services</a>
+          <a href="../../index.html#pricing">Pricing</a>
+          <a href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Fitness Ave, Gym City</p>
+          <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+          <p><i class="fas fa-envelope"></i> info@fitlifegym.com</p>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 FitLife Gym. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/fitness-tracker.js"></script>
+  </body>
+</html>
